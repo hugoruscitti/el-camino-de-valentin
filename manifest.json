@@ -1,0 +1,22 @@
+{
+  "name":"Valentín",
+  "short_name":"Valentín",
+  "start_url":"index.html",
+  "display":"standalone",
+  "background_color":"#e591ff",
+  "theme_color":"black",
+  "scope": ".",
+  "description":"El camino de Valentín",
+  "icons":[
+    {
+      "src":"icono-192.png",
+      "sizes":"192x192",
+      "type":"image/png"
+    },
+    {
+      "src":"icono.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    }
+  ]
+}

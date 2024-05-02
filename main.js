@@ -1,6 +1,43 @@
+
 document.addEventListener("DOMContentLoaded", function() {
-  
+  dibujar_tabla();
+
+  setInterval(() => {
+    dibujar_tabla();
+  }, 60*60*1000);
+
+});
+
+
+
+function formatear_fecha(fecha) {
+  var options = { month: 'short', day: 'numeric' };
+  return fecha.toLocaleDateString('es-ES', options);
+}
+
+// retorna una lista de números de días a partir
+// de la semana.
+function dias_de_la_semana(semana) {
+  return [1, 2, 3, 4, 5, 6, 7].map(n => n+semana*7);
+}
+
+function obtener_clase_para_el_dia(dia, dias) {
+  if (dia<dias) {
+    return "done";
+  } else {
+    if (dia==Math.ceil(dias)) {
+      return "hoy";
+    } else {
+      return "wait";
+    }
+  }
+}
+
+
+function dibujar_tabla() {
+  console.log("iniciando el dibujado...");
   const UN_DIA = 1000 * 60 * 60 * 24;
+
   // fecha de gestación y fecha actual.
   const comienzo = new Date(2023, 10, 8)
   const hoy = new Date();
@@ -12,24 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // semanas de 0 a 39...
   const semanas = [...Array(40).keys()];
-
-  // retorna una lista de números de días a partir
-  // de la semana.
-  function dias_de_la_semana(semana) {
-    return [1, 2, 3, 4, 5, 6, 7].map(n => n+semana*7);
-  }
-
-  function obtener_clase_para_el_dia(dia, dias) {
-    if (dia<dias) {
-      return "done";
-    } else {
-      if (dia==Math.ceil(dias)) {
-        return "hoy";
-      } else {
-        return "wait";
-      }
-    }
-  }
 
   const data = semanas.map(semana => {
       return {
@@ -45,14 +64,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   );
 
-  function formatear_fecha(fecha) {
-    var options = { month: 'short', day: 'numeric' };
-    return fecha.toLocaleDateString('es-ES', options);
-  }
-
-
   // Dibuja el contenido en la página:
-  const tabla = document.querySelector("tbody");
+  const tabla = document.querySelector("#tabla tbody");
+  tabla.innerHTML = "";
+
+
+  let tr = document.createElement("tr")
+
+    tr.innerHTML = `
+      <td class="semana"></td>
+      <td class="dias">
+        <span class="dia-de-la-semana">M</span>
+        <span class="dia-de-la-semana">J</span>
+        <span class="dia-de-la-semana">V</span>
+        <span class="dia-de-la-semana">S</span>
+        <span class="dia-de-la-semana">D</span>
+        <span class="dia-de-la-semana">L</span>
+        <span class="dia-de-la-semana">M</span>
+      </td>
+      <td>
+      </td>
+    `;
+
+    tabla.appendChild(tr);
+
+
 
   data.map(semana => {
     let tr = document.createElement("tr")
@@ -68,8 +104,6 @@ document.addEventListener("DOMContentLoaded", function() {
       return `<span class="${dia.clase}"></span>`;
     });
 
-
-
     tr.innerHTML = `
       <td class="semana ${semana.clase}">Semana ${semana.semana+1}</td>
       <td class="dias">
@@ -80,9 +114,6 @@ document.addEventListener("DOMContentLoaded", function() {
       </td>
     `;
 
-
     tabla.appendChild(tr);
   });
-
-
-});
+}

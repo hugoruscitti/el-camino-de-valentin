@@ -8,7 +8,8 @@
 body {
   background-color: --color-2;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
+  max-width: 562px;
+  margin: auto;
 }
 
 .dias {
@@ -20,10 +21,6 @@ body {
 }
 
 
-h1 {
-  color: rgb(138,76,85);
-  padding-bottom: 1em;
-}
 
 .done {
   background-color: rgb(138,76,85);
@@ -83,4 +80,28 @@ h1 {
 .actual {
   color: #d16969;
   font-weight: bold;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titulo {
+  color: rgb(138,76,85);
+  font-size: 2em;
+  font-weight: bold;
+  padding-top: 0.75em;
+}
+
+.dia-de-la-semana {
+  border: 2px solid transparent;
+  display: inline-block;
+  height: 2em;
+  margin-right: 1px;
+  width: 2em;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: gray;
 }
