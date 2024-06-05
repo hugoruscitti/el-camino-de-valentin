@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
 function formatear_fecha(fecha) {
   var options = { month: 'short', day: 'numeric' };
   return fecha.toLocaleDateString('es-ES', options);
@@ -50,7 +49,7 @@ function dibujar_tabla() {
   // semanas de 0 a 39...
   const semanas = [...Array(40).keys()];
 
-  const data = semanas.map(semana => {
+  let data = semanas.map(semana => {
       return {
         semana: semana,
         fecha: new Date(comienzo.getTime() + UN_DIA * semana*7),
@@ -88,6 +87,8 @@ function dibujar_tabla() {
 
     tabla.appendChild(tr);
 
+
+  data = data.reverse();
 
 
   data.map(semana => {
