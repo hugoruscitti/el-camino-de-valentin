@@ -1,6 +1,26 @@
+let FECHA_DE_NACIMIENTO = null; // "2024-08-08"  tiene que ser un día más para calcular bien.
+let subtitulo = "";  //"Nació el miércoles 7 a las 16hs"
+
+if (window.location.href.includes("fecha")) {
+  FECHA_DE_NACIMIENTO = window.location.href.split("fecha=")[1];
+}
 
 document.addEventListener("DOMContentLoaded", function() {
   dibujar_tabla();
+
+  if (FECHA_DE_NACIMIENTO) {
+    document.getElementById("osito").classList.add("amacar");
+    document.getElementById("titulo").innerText = "¡ Ya nació Valentín !";
+    document.getElementById("subtitulo").innerText = subtitulo;
+    document.getElementById("titulo").classList.add("animar-colores");
+
+    setInterval(() => {
+      if (!document.hidden){
+        generar_confetti();
+      }
+    }, 1000);
+  }
+
 
   setInterval(() => {
     dibujar_tabla();
@@ -8,6 +28,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+function generar_confetti() {
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  confetti({
+    angle: randomInRange(55, 125),
+    spread: randomInRange(50, 150),
+    particleCount: randomInRange(50, 200),
+    origin: { y: 0.75 }
+  });
+}
 
 function formatear_fecha(fecha) {
   var options = { month: 'short', day: 'numeric' };
@@ -39,7 +71,14 @@ function dibujar_tabla() {
 
   // fecha de gestación y fecha actual.
   const comienzo = new Date(2023, 10, 8)
-  const hoy = new Date();
+  let hoy = null
+
+  if (FECHA_DE_NACIMIENTO) {
+    hoy = new Date(FECHA_DE_NACIMIENTO);
+  } else {
+    hoy = new Date();
+  }
+  
 
   // diferencia entre fechas, milisegundos, días y semanas.
   const diff_en_ms = new Date(hoy) - new Date(comienzo)

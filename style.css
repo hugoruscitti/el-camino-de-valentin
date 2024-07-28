@@ -105,3 +105,50 @@ body {
   align-items: center;
   color: gray;
 }
+
+@keyframes swing {
+  0% { transform: rotate(3deg); }
+  100% { transform: rotate(-20deg); }
+}
+
+.amacar {
+  animation: swing ease-in-out 1s infinite alternate;
+  -webkit-transform-origin: center;
+  -moz-transform-origin: center;
+  transform-origin: center;
+}
+
+@keyframes colores {
+  0% {
+    color: rgb(138, 76, 85);
+  }
+
+  25%{
+    color:#4FC1E9;
+  }
+
+  50% {
+    color: rgb(138, 76, 85);
+  }
+
+  75%{
+    color:rgb(82 138 76);
+  }
+}
+
+.animar-colores {
+  animation: colores linear 8s infinite alternate;
+}
+
+.subtitulo {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: gray;
+  text-align: center;
+  font-style: italic;
+}
+
+.contenedor-osito {
+  display: flex;
+  align-items: center;
+}

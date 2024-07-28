@@ -6,7 +6,8 @@
     <meta http-equiv="cleartype" content="on">
     <meta name="viewport" content="width=device-width, initial-scale=0.6">
     <link rel="stylesheet" href="style.css?v=3">
-    <script src="main.js?v=3"></script>
+    <script src="main.js?v=4"></script>
+    <script src="confetti.browser.min.js"></script>
     <script src="load-sw.js?v=4"></script>
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" sizes="196x196" href="public/favicon-196.png">
@@ -48,13 +49,21 @@
     <link rel="apple-touch-startup-image" href="public/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)">
   </head>
   <body>
+
     <div class="cabecera">
-      <div class="titulo">El camino de Valentín</div>
-      <img src="osito.png" width="90px">
+      <div>
+        <div id="titulo" class="titulo">El camino de Valentín</div>
+        <div id="subtitulo" class="subtitulo"></div>
+      </div>
+      <div class="contenedor-osito">
+        <img id="osito" src="osito.png" class="" width="90px">
+      </div>
     </div>
     <table id="tabla">
       <tbody>
       </tbody>
     </table>
+
+
   </body>
 </html>
