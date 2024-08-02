@@ -1,29 +1,16 @@
-let FECHA_DE_NACIMIENTO = null; // "2024-08-08"  tiene que ser un día más para calcular bien.
+let FECHA_DE_NACIMIENTO = null; //"2024-08-08"  //tiene que ser un día más para calcular bien.
 let subtitulo = "";  //"Nació el miércoles 7 a las 16hs"
 
-if (window.location.href.includes("fecha")) {
-  FECHA_DE_NACIMIENTO = window.location.href.split("fecha=")[1];
-}
 
 document.addEventListener("DOMContentLoaded", function() {
+  actualizar_variables_de_fechas();
   dibujar_tabla();
-
-  if (FECHA_DE_NACIMIENTO) {
-    document.getElementById("osito").classList.add("amacar");
-    document.getElementById("titulo").innerText = "¡ Ya nació Valentín !";
-    document.getElementById("subtitulo").innerText = subtitulo;
-    document.getElementById("titulo").classList.add("animar-colores");
-
-    setInterval(() => {
-      if (!document.hidden){
-        generar_confetti();
-      }
-    }, 1000);
-  }
-
+  evaluar_animacion_de_nacimiento();
 
   setInterval(() => {
+    actualizar_variables_de_fechas();
     dibujar_tabla();
+    evaluar_animacion_de_nacimiento();
   }, 60*60*1000);
 
 });
@@ -63,7 +50,6 @@ function obtener_clase_para_el_dia(dia, dias) {
     }
   }
 }
-
 
 function dibujar_tabla() {
   console.log("iniciando el dibujado...");
@@ -156,4 +142,28 @@ function dibujar_tabla() {
 
     tabla.appendChild(tr);
   });
+}
+
+function evaluar_animacion_de_nacimiento() {
+  if (FECHA_DE_NACIMIENTO) {
+    document.getElementById("osito").classList.add("amacar");
+    document.getElementById("titulo").innerText = "¡ Ya nació Valentín !";
+    document.getElementById("subtitulo").innerText = subtitulo;
+    document.getElementById("titulo").classList.add("animar-colores");
+
+    setInterval(() => {
+      if (!document.hidden){
+        generar_confetti();
+      }
+    }, 1000);
+  } else {
+    document.getElementById("subtitulo").innerText = subtitulo;
+  }
+
+}
+
+function actualizar_variables_de_fechas() {
+  if (window.location.href.includes("fecha")) {
+    FECHA_DE_NACIMIENTO = window.location.href.split("fecha=")[1];
+  }
 }
