@@ -72,7 +72,7 @@ function dibujar_tabla() {
   const semana_actual = parseInt(dias/7);
 
   // semanas de 0 a 39...
-  const semanas = [...Array(40).keys()];
+  const semanas = [...Array(41).keys()];
 
   let data = semanas.map(semana => {
       return {
