@@ -1,5 +1,5 @@
-let FECHA_DE_NACIMIENTO = null; //"2024-08-08"  //tiene que ser un día más para calcular bien.
-let subtitulo = "";  //"Nació el miércoles 7 a las 16hs"
+let FECHA_DE_NACIMIENTO = "2024-08-16";  //tiene que ser un día más para calcular bien.
+let subtitulo = "Nació el Jueves 15 a las 16:15hs"
 
 
 document.addEventListener("DOMContentLoaded", function() {
